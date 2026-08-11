@@ -7,6 +7,10 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
+// ============================================================================
+// AUTH PAGE
+// ============================================================================
+
 function AuthPage({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -99,6 +103,10 @@ function AuthPage({ onLogin }) {
     </div>
   );
 }
+
+// ============================================================================
+// CREATE EVENT PAGE
+// ============================================================================
 
 function CreateEventPage({ user, onEventCreated }) {
   const [formData, setFormData] = useState({
@@ -278,6 +286,10 @@ function CreateEventPage({ user, onEventCreated }) {
     </div>
   );
 }
+
+// ============================================================================
+// INVITATION PAGE (PUBLIC)
+// ============================================================================
 
 function InvitationPage({ event }) {
   const [rsvpStatus, setRsvpStatus] = useState(null);
@@ -466,6 +478,10 @@ function InvitationPage({ event }) {
   );
 }
 
+// ============================================================================
+// HOST DASHBOARD
+// ============================================================================
+
 function HostDashboard({ user, events, onLogout, onCreateEvent, onSelectEvent }) {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
@@ -559,6 +575,10 @@ function HostDashboard({ user, events, onLogout, onCreateEvent, onSelectEvent })
     </div>
   );
 }
+
+// ============================================================================
+// EVENT DETAIL / RSVP DASHBOARD
+// ============================================================================
 
 function EventDetail({ event, onBack, onLogout }) {
   const [rsvps, setRsvps] = useState([]);
@@ -838,6 +858,10 @@ function EventDetail({ event, onBack, onLogout }) {
   );
 }
 
+// ============================================================================
+// MAIN APP
+// ============================================================================
+
 export default function MementoApp() {
   const [currentUser, setCurrentUser] = useState(null);
   const [page, setPage] = useState('auth');
@@ -861,6 +885,7 @@ export default function MementoApp() {
         setPage('auth');
       }
 
+      // Check for invitation in URL
       const params = new URLSearchParams(window.location.search);
       const slug = params.get('invitation');
       if (slug) {
